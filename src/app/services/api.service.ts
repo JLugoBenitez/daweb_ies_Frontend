@@ -31,4 +31,7 @@ export class ApiService {
   getMatriculas(): Observable<Matricula[]> {
     return this.http.get<Matricula[]>(`${this.apiUrl}/matricula`);
   }
+  getMatriculasPorId(id:number): Observable<Matricula>{
+    return this.http.get<Matricula>(`${this.apiUrl}/matriculas/${id}`);
+  }
 }
