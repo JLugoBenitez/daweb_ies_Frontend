@@ -1,0 +1,35 @@
+<div class="reveal">
+  <header style="margin-bottom: 2rem;">
+    <button class="btn-action" routerLink="/alumnos" style="margin-bottom: 1rem; padding: 0.5rem 1rem;">← Volver</button>
+    <h1 *ngIf="alumno">Detalles de {{alumno.nombre}}</h1>
+  </header>
+
+  <div class="glass-card" *ngIf="alumno; else loading">
+    <div style="display: grid; grid-template-columns: 150px 1fr; gap: 2rem; align-items: start;">
+        <div style="width: 150px; height: 150px; border-radius: 20px; background: linear-gradient(135deg, var(--primary) 0%, #4f46e5 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; font-weight: 700; color: white;">
+            {{alumno.nombre.charAt(0)}}
+        </div>
+        <div>
+            <h2 style="margin-bottom: 0.5rem;">{{alumno.nombre}} {{alumno.apellidos}}</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">ID de Estudiante: #{{alumno.id}}</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="info-box">
+                    <label style="display: block; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Usuario iPasen</label>
+                    <code style="font-size: 1.1rem; color: var(--primary);">{{alumno.ipasen}}</code>
+                </div>
+                <div class="info-box">
+                    <label style="display: block; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Estado</label>
+                    <span style="color: var(--secondary); font-weight: 600;">Activo</span>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div class="glass-card" style="text-align: center; padding: 3rem;">
+        <p>Cargando datos del alumno...</p>
+    </div>
+  </ng-template>
+</div>
