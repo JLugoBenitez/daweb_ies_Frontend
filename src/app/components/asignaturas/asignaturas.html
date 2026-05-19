@@ -12,6 +12,7 @@
           <th>Nombre de la Materia</th>
           <th>Carga Horaria</th>
           <th>Profesor Responsable</th>
+          <th>Detalles</th>
         </tr>
       </thead>
       <tbody>
@@ -31,6 +32,9 @@
                <span>{{a.profesor.nombre}} {{a.profesor.apellidos}}</span>
             </div>
             <ng-template #noProf><span style="color: var(--text-muted); font-style: italic;">Sin asignar</span></ng-template>
+          </td>
+          <td>
+            <button class="btn-action" [routerLink]="['/asignatura', a.id]" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Detalles</button>
           </td>
         </tr>
       </tbody>

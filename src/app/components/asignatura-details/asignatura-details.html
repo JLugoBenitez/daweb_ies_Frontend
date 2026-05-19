@@ -1,0 +1,61 @@
+<div class="reveal">
+  <header style="margin-bottom: 2rem;">
+    <button class="btn-action" routerLink="/asignaturas" style="margin-bottom: 1rem; padding: 0.5rem 1rem;">← Volver</button>
+    <h1 *ngIf="asignatura">Detalles de {{asignatura.nombre}}</h1>
+  </header>
+
+  <div class="glass-card" *ngIf="asignatura">
+    <div style="display: grid; grid-template-columns: 150px 1fr; gap: 2rem; align-items: start;">
+        <div style="width: 150px; height: 150px; border-radius: 20px; background: linear-gradient(135deg, var(--primary) 0%, #4f46e5 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; font-weight: 700; color: white;">
+            📚
+        </div>
+        <div>
+            <h2 style="margin-bottom: 0.5rem;">{{asignatura.nombre}}</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Horas anuales: {{asignatura.horas}} h</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="info-box">
+                    <label style="display: block; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Profesor</label>
+                    <span *ngIf="asignatura.profesor">{{asignatura.profesor.nombre}} {{asignatura.profesor.apellidos}}</span>
+                    <span *ngIf="!asignatura.profesor" style="color: var(--text-muted); font-style: italic;">Sin asignar</span>
+                </div>
+                <div class="info-box">
+                    <label style="display: block; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Alumnos matriculados</label>
+                    <span style="font-weight: 600;">{{matriculas.length}} alumnos</span>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="glass-card" style="margin-top: 2rem;" *ngIf="asignatura">
+    <h3 style="margin-bottom: 1rem;">Lista de Alumnos Matriculados</h3>
+    
+    <table *ngIf="matriculas.length > 0; else noAlumnos">
+      <thead>
+        <tr>
+          <th>Alumno</th>
+          <th>Curso</th>
+          <th>Nota Media</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let m of matriculas">
+          <td>{{m.alumno.nombre}} {{m.alumno.apellidos}}</td>
+          <td>{{m.curso}}º</td>
+          <td>{{m.notaMedia}}</td>
+          <td>
+            <button class="btn-action" [routerLink]="['/alumnos', m.alumno.id]" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;">Ver Ficha</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #noAlumnos>
+      <p style="color: var(--text-muted); font-style: italic;">No hay alumnos matriculados en esta asignatura.</p>
+    </ng-template>
+  </div>
+</div>
+
+

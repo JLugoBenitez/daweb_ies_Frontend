@@ -27,6 +27,9 @@ export class ApiService {
   getAsignaturas(): Observable<Asignatura[]> {
     return this.http.get<Asignatura[]>(`${this.apiUrl}/asignatura`);
   }
+  getAsignaturasPorId(id: number): Observable<Asignatura> {
+    return this.http.get<Asignatura>(`${this.apiUrl}/asignatura/${id}`);
+  }
 
   getMatriculas(): Observable<Matricula[]> {
     return this.http.get<Matricula[]>(`${this.apiUrl}/matricula`);
